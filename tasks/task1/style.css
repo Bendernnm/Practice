@@ -1,0 +1,41 @@
+h1{
+    text-align: center;
+    font-size: 20px;
+    font-style:oblique;
+    letter-spacing:10px;
+    font-family: Courier New, serif;
+}
+
+.content{
+    color: blue;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    font-size: 16px;
+    font-family: Comic Sans MS, serif;
+}
+
+#part1{
+    font-size: 16px;
+    font-family: Helvetica, serif;
+    text-align: justify;
+    line-height: 2.0;
+}
+
+.otherPart{
+    text-align: center;
+    background-color: yellow;
+}
+
+body{
+    background: url("../../res/background/bg_task1.png") repeat-y;
+    height:500px;
+}
+
+image{
+    text-align: center;
+}
+
+table{
+    position: absolute;
+    right: 10%;
+}

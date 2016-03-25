@@ -1,0 +1,22 @@
+header{
+    width: 100%;
+    height: 20%;
+    border: 2px solid black;
+}
+
+#header_bg {
+    width: 100%;
+    height: 10%;
+}
+
+#lable_version {
+    width: 100%;
+    height: 10%;
+    letter-spacing: 2px;
+    font-size: 25px;
+    font-family: Comic Sans MS, serif;
+    background-color: chocolate;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-top: -4px;
+}

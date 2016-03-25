@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab2</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="src/Function.js"></script>
+    <script src="src/MeanSquareApproximationSystem.js"></script>
+    <script src="src/AverageMatrix.js"></script>
+    <script src="src/CausalGaus.js"></script>
+    <script src="src/CloseFunction.js"></script>
+    <script src="src/Eps.js"></script>
+</head>
+<body>
+<input id="drawGraphic" type="button" value="Draw graphic">
+<input id="showTable" type="button" value="Show table">
+<br>
+<br>
+
+<div id="divShow"></div>
+<div id="divDraw"></div>
+<script>
+    google.charts.load('current', {'packages': ['corechart']});
+
+    var arrayValue = [0, 1, 2, 4];
+    var arrayFunctionValue = [1, 2, 5, 8];
+
+    var obj = new MeanSquareApproximationSystem(testFun, arrayValue, arrayFunctionValue);
+
+    var array = obj.getTableValues();
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable(array);
+
+        var options = {
+            title: 'Company Performance',
+            curveType: 'function',
+            legend: {position: 'bottom'},
+            pointSize: 10,
+            pointShape: 'square'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('divDraw'));
+
+        chart.draw(data, options);
+    }
+    function showTable() {
+        obj.showTable();
+    }
+
+    document.getElementById("drawGraphic").onclick = drawChart;
+    document.getElementById("showTable").onclick = showTable;
+</script>
+</body>
+</html>

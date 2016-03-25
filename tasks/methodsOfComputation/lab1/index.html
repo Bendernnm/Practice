@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab1</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+<div id="form">
+    <label for="pointA">Point A: </label><input id="pointA" type="text" value="-10"><br>
+    <label for="pointB">Point B: </label><input id="pointB" type="text" value="10"><br>
+    <label for="countStep">Count steps: </label><input id="countStep" type="number" value="4"><br>
+    <label for="eps">Eps: </label><input id="eps" type="text" value="0.01"><br><br>
+    <input id="drawGraphic" type="button" value="Draw">
+    <input id="calculateIntegral" type="button" value="Calculate">
+</div>
+
+<hr>
+<div id="result"></div>
+
+<hr>
+<div id="chart_div" style="width: 1400px; height: 650px;"></div>
+
+<hr>
+
+<script src="src/Function.js" charset="UTF-8"></script>
+<script src="src/Integral.js" charset="UTF-8"></script>
+<script src="src/IntegralMethod.js" charset="UTF-8"></script>
+
+<script charset="UTF-8">
+    google.charts.load('current', {'packages': ['corechart']});
+
+    function IF(value) {
+        return 1/(Math.sqrt(2*value*value+0.3));
+    }
+
+    function calculateIntegral() {
+        var integralFunction = new Function(IF);
+        var integralMethod = formulaRightRectangles;
+        var pointA = parseFloat(document.getElementById("pointA").value);//0
+        var pointB = parseFloat(document.getElementById("pointB").value);//4
+        var countStep = parseFloat(document.getElementById("countStep").value);//4
+        var eps = parseFloat(document.getElementById("eps").value);//0.0001
+
+        var obj = new Integral(integralFunction, integralMethod, countStep, eps, pointA, pointB);
+        var str = "";
+
+        //str += "x*x:<br>";
+
+        var result = obj.calculateAToB();
+        str += "Формула правих прямокутників: " + result + "<br>";
+
+        obj.setIntegralMethod(formulaLeftRectangles);
+        result = obj.calculateAToB();
+        str += "Формула лівих прямокутників: " + result + "<br>";
+
+        obj.setIntegralMethod(formulaCentralRectangles);
+        result = obj.calculateAToB();
+        str += "Формула центральних прямокутників: " + result + "<br>";
+
+        obj.setIntegralMethod(trapezoidalRule);
+        result = obj.calculateAToB();
+        str += "Правило трапецій: " + result + "<br>";
+
+        obj.setIntegralMethod(simpsonMethod);
+        result = obj.calculateAToB();
+        str += "Сімпсон: " + result + "<br>";
+
+        document.getElementById("result").innerHTML = str;
+    }
+
+    function getPoints() {
+        var pointA = parseFloat(document.getElementById("pointA").value);//0
+        var pointB = parseFloat(document.getElementById("pointB").value);//4
+        var countStep = parseFloat(document.getElementById("countStep").value);//4
+        var step = (pointB - pointA) / countStep;
+
+        var array = [];
+        array[0] = ['X', 'Y'];
+
+        for (var i = 0; i <= countStep; i++) {
+            array[i + 1] = [pointA, IF(pointA)];
+            pointA += step;
+        }
+
+        console.log(array);
+        return array;
+    }
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable(getPoints());
+
+        var options = {
+            title: 'function',
+            hAxis: {title: 'X', titleTextStyle: {color: '#333'}},
+            vAxis: {title: 'Y',minValue: 0},
+            pointSize:10,
+            pointShape: 'square'
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+
+    document.getElementById("calculateIntegral").onclick = calculateIntegral;
+    document.getElementById("drawGraphic").onclick = drawChart;
+</script>
+
+</body>
+</html>

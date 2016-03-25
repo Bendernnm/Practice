@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Last quest</title>
+    <style>
+        #show div {
+            text-align: center;
+            font-size: 50px;
+            width: 15%;
+            height: 10%;
+            margin: 9%;
+            font-family: Comic Sans MS, serif;
+            border: 1px solid black;
+            float: left;
+        }
+
+        .yes {
+            background-color: #9bd911;
+        }
+
+        .no {
+            background-color: #d94116;
+        }
+
+        #result {
+            background-color: rgba(57, 20, 3, 0.11);
+        }
+
+        #show {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="show">
+    <div id="result">Result</div>
+</div>
+
+
+<script src="src/ComponentVote.js" charset="UTF-8"></script>
+
+</body>
+</html>
+
+
+<!--4)	компонент, для голосування. -->
+<!--Компонент повинен містити публічну властивість -->
+<!--що визначає поточний результат та публічні методи -->
+<!--для голосування за та проти.-->

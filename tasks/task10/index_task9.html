@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matrix Work</title>
+</head>
+<style>
+    #showMatrix {
+        padding: 10px;
+        margin: 3px;
+    }
+
+    .elementTableMatrix {
+        padding: 2px;
+        margin: 1px;
+        width: 50px;
+        height: 50px;
+        border: 1px dotted black;
+        text-align: center;
+    }
+</style>
+<body>
+<div>
+    <input id="rowCount" type="number" value="5" min="1" max="20">
+    <input id="columnCount" type="number" value="5" min="1" max="20">
+    <input id="task9" type="button" value="CreateMatrix">
+</div>
+
+<br>
+
+<div>
+    <input id="multiplyNumber" type="number" value="1">
+    <input id="task10" type="button" value="Multiply">
+</div>
+
+<script src="../../lib/matrixTable/TableMatrix.js"></script>
+<script src="../../lib/matrixTable/Matrix.js"></script>
+
+<div id="showMatrix"></div>
+
+<script>
+    init();
+
+    var tableMatrix = new TableMatrix("rowCount", "columnCount", "showMatrix");
+    tableMatrix.initTableMatrix();
+    tableMatrix.showTableMatrix();
+
+    var matrix = new Matrix(tableMatrix.rowCount, tableMatrix.columnCount);
+    matrix.init(0);
+
+    function init() {
+        numericUpDownRow = document.getElementById("rowCount");
+        numericUpDownColumn = document.getElementById("columnCount");
+
+        task9 = document.getElementById("task9");
+        task10 = document.getElementById("task10");
+
+        var multiplyNumber = document.getElementById("multiplyNumber")
+
+        numericUpDownRow.onchange = function () {
+            tableMatrix = new TableMatrix("rowCount", "columnCount", "showMatrix");
+            matrix = new Matrix(tableMatrix.rowCount, tableMatrix.columnCount);
+            matrix.init(0);
+            tableMatrix.initTableMatrix();
+            tableMatrix.showTableMatrix();
+        };
+        numericUpDownColumn.onchange = function () {
+            tableMatrix = new TableMatrix("rowCount", "columnCount", "showMatrix");
+            matrix = new Matrix(tableMatrix.rowCount, tableMatrix.columnCount);
+            matrix.init(0);
+            tableMatrix.initTableMatrix();
+            tableMatrix.showTableMatrix();
+        };
+
+        task9.onclick = function () {
+            matrix.generate();
+            matrix.toTableMatrix(tableMatrix, 4);
+
+            var indexMin = matrix.findRowWithMinElement();
+            alert("Min = " + indexMin[1] + ".\nIndex row min = " + indexMin[0] + ".");
+        };
+
+        task10.onclick = function () {
+            matrix.ofTableMatrix(tableMatrix);
+            var multiplicationDiagonalElements = matrix.multiplicationDiagonalElements();
+            alert("Multiplication diagonal elements = " + multiplicationDiagonalElements);
+
+            matrix.multiplicationMatrix(multiplyNumber.value);
+            matrix.toTableMatrix(tableMatrix, 4);
+        };
+    }
+</script>
+
+</body>
+</html>
