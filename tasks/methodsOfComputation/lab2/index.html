@@ -24,8 +24,9 @@
 
     var arrayValue = [0, 1, 2, 4];
     var arrayFunctionValue = [1, 2, 5, 8];
+    var f = new Function(useFunction);
 
-    var obj = new MeanSquareApproximationSystem(testFun, arrayValue, arrayFunctionValue);
+    var obj = new MeanSquareApproximationSystem(arrayValue, arrayFunctionValue);
 
     var array = obj.getTableValues();
 

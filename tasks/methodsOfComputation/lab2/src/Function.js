@@ -11,11 +11,10 @@ Function.prototype = {
         for (var i = 0; i < arrayValue.length; i++) {
             arrayResult[i] = this.calculatePoint(arrayValue[i]);
         }
-
         return arrayResult;
     }
 };
 
-function testFun(value) {
+function useFunction(value) {
     return value * value;
 }

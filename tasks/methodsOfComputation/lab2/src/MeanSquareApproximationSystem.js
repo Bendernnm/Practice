@@ -1,7 +1,13 @@
-function MeanSquareApproximationSystem(f, arrayValue, arrayFunctionValue) {
-    this.f = new Function(f);
+function MeanSquareApproximationSystem(arrayValue, functionValue) {
     this.arrayX = arrayValue;
-    this.arrayY = arrayFunctionValue != undefined ? arrayFunctionValue : this.f.calculateArrayValue(arrayValue);
+
+    if (!!functionValue.f) {
+        this.f = new Function(functionValue);
+        this.arrayY = f.calculateArrayValue(arrayValue);
+    }
+    else {
+        this.arrayY = functionValue;
+    }
 
     this.averageMatrix = new AverageMatrix(this.arrayX, this.arrayY);
     this.averagePolynomial = calculateMatrix(this.averageMatrix.matrix);
