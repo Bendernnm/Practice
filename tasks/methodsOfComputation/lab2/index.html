@@ -10,26 +10,83 @@
     <script src="src/CausalGaus.js"></script>
 </head>
 <body>
-<input id="drawGraphic" type="button" value="Draw graphic">
-<input id="showTable" type="button" value="Show table">
-<br>
+<div style="border: 1px solid black">
+    <input id="drawGraphic1" type="button" value="Draw graphic">
+    <input id="showTable1" type="button" value="Show table">
+    <br>
+    <br>
+
+    <center id="divShow1"></center>
+    <center id="divDraw1"></center>
+</div>
 <br>
 
-<div id="divShow"></div>
-<div id="divDraw"></div>
+<div style="border: 1px solid black">
+    <input id="drawGraphic2" type="button" value="Draw graphic">
+    <input id="showTable2" type="button" value="Show table">
+    <br>
+    <br>
+
+    <center id="divShow2"></center>
+    <center id="divDraw2"></center>
+</div>
+<br>
+
+<div style="border: 1px solid black">
+    <input id="drawGraphic3" type="button" value="Draw graphic">
+    <input id="showTable3" type="button" value="Show table">
+    <br>
+    <br>
+
+    <center id="divShow3"></center>
+    <center id="divDraw3"></center>
+</div>
 <script>
     google.charts.load('current', {'packages': ['corechart']});
 
-    var arrayValue = [0, 1, 2, 4];
-    var arrayFunctionValue = [1, 2, 5, 8];
-    var f = new Function(useFunction);
+    var arrayValue = [0, 1, 2, 4];                      //Міняємо для першого методу
+    var arrayFunctionValue = [1, 2, 5, 8];              //Міняємо для першого методу
 
-    var obj = new PolynomialApproximation(arrayValue, arrayFunctionValue);
+    var polynomialApproximation = new PolynomialApproximation(arrayValue, arrayFunctionValue);
 
-    var array = obj.getTableValues();
+    var arrayPolynomialApproximation = polynomialApproximation.getTableValues();
 
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable(array);
+    document.getElementById("drawGraphic1").onclick = drawChartPolynomialApproximation;
+    document.getElementById("showTable1").onclick = showTablePolynomialApproximation;
+
+
+    arrayValue = [1, 2, 3, 4];                      //Міняємо для другого методу
+    var f = Math.tan;                               //Міняємо для другого методу
+    var stackFunction = [Math.sin, Math.cos];       //Міняємо для другого методу
+
+    //наближення тангенсу через сінус і косинус дає доста велику похибку, інший приклад закоментив
+    //    var f = function (x) {
+    //        return x - 1;
+    //    };
+    //
+    //    var stackFunction = [
+    //        function (x) {
+    //            return x;
+    //        }, function (x) {
+    //            return x + 1;
+    //        }];
+
+    var functionalApproach = new FunctionalApproach(arrayValue, f, stackFunction);
+
+    arrayFunctionalApproach = functionalApproach.getTableValues();
+
+    document.getElementById("drawGraphic2").onclick = drawChartFunctionalApproach;
+    document.getElementById("showTable2").onclick = showTableFunctionalApproach;
+
+
+    arrayValue = [1, 2, 3, 4];                      //Міняємо для третього методу
+    f = Math.tan;                               //Міняємо для третього методу
+    stackFunction = [Math.sin, Math.cos];       //Міняємо для третього методу
+
+
+
+    function drawChartPolynomialApproximation() {
+        var data = google.visualization.arrayToDataTable(arrayPolynomialApproximation);
 
         var options = {
             title: 'Company Performance',
@@ -39,16 +96,32 @@
             pointShape: 'square'
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('divDraw'));
+        var chart = new google.visualization.LineChart(document.getElementById('divDraw1'));
 
         chart.draw(data, options);
     }
-    function showTable() {
-        obj.showTable();
+    function showTablePolynomialApproximation() {
+        polynomialApproximation.showTable();
     }
 
-    document.getElementById("drawGraphic").onclick = drawChart;
-    document.getElementById("showTable").onclick = showTable;
+    function drawChartFunctionalApproach() {
+        var data = google.visualization.arrayToDataTable(arrayFunctionalApproach);
+
+        var options = {
+            title: 'Company Performance',
+            curveType: 'function',
+            legend: {position: 'bottom'},
+            pointSize: 10,
+            pointShape: 'square'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('divDraw2'));
+
+        chart.draw(data, options);
+    }
+    function showTableFunctionalApproach() {
+        functionalApproach.showTable();
+    }
 </script>
 </body>
 </html>

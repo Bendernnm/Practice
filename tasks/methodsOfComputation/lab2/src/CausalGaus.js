@@ -1,4 +1,13 @@
-function calculateMatrix(matrix) {
+function calculateMatrix(useMatrix) {
+    var matrix = [];
+    for (var i = 0; i < useMatrix.length; i++) {
+        matrix[i] = [];
+        for (var j = 0; j < useMatrix[i].length; j++) {
+            matrix[i][j] = useMatrix[i][j];
+        }
+    }
+
+
     var rowCount = matrix.length;
     var columnCount = matrix[0].length;
 
