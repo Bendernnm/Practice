@@ -8,8 +8,6 @@
     <script src="src/MeanSquareApproximationSystem.js"></script>
     <script src="src/AverageMatrix.js"></script>
     <script src="src/CausalGaus.js"></script>
-    <script src="src/CloseFunction.js"></script>
-    <script src="src/Eps.js"></script>
 </head>
 <body>
 <input id="drawGraphic" type="button" value="Draw graphic">
@@ -26,7 +24,7 @@
     var arrayFunctionValue = [1, 2, 5, 8];
     var f = new Function(useFunction);
 
-    var obj = new MeanSquareApproximationSystem(arrayValue, arrayFunctionValue);
+    var obj = new PolynomialApproximation(arrayValue, arrayFunctionValue);
 
     var array = obj.getTableValues();
 

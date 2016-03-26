@@ -1,4 +1,4 @@
-function MeanSquareApproximationSystem(arrayValue, functionValue) {
+function PolynomialApproximation(arrayValue, functionValue) {
     this.arrayX = arrayValue;
 
     if (!!functionValue.f) {
@@ -22,9 +22,33 @@ function MeanSquareApproximationSystem(arrayValue, functionValue) {
     console.log("Polynomial: " + this.averagePolynomial);
     console.log("$Y: " + this.array$Y);
     console.log("Eps: " + this.arrayEps);
+
+    function getCloseFunction(arrayX, arrayY, averagePolynomial) {
+        array$Y = [];
+
+        for (var i = 0; i < arrayY.length; i++) {
+            array$Y[i] = 0
+        }
+
+        for (var i = 0; i < arrayY.length; i++) {
+            for (var j = 0; j < averagePolynomial.length; j++) {
+                array$Y[i] += averagePolynomial[j] * Math.pow(arrayX[i], j);
+            }
+        }
+
+        return array$Y;
+    }
+
+    function getEpsArray(arrayY, array$Y) {
+        arrayEps = [];
+        for (var i = 0; i < arrayY.length; i++) {
+            arrayEps[i] = Math.abs(arrayY[i] - array$Y[i]);
+        }
+        return arrayEps;
+    }
 }
 
-MeanSquareApproximationSystem.prototype = {
+PolynomialApproximation.prototype = {
     getEps: function () {
         var summ = 0;
         var length = this.arrayEps.length;
