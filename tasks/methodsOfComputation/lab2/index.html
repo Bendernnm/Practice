@@ -8,6 +8,7 @@
     <script src="src/MeanSquareApproximationSystem.js"></script>
     <script src="src/AverageMatrix.js"></script>
     <script src="src/CausalGaus.js"></script>
+    <script src="src/CausalIntegral.js"></script>
 </head>
 <body>
 <div style="border: 1px solid black">
@@ -42,86 +43,110 @@
     <center id="divDraw3"></center>
 </div>
 <script>
-    google.charts.load('current', {'packages': ['corechart']});
+        google.charts.load('current', {'packages': ['corechart']});
 
-    var arrayValue = [0, 1, 2, 4];                      //Міняємо для першого методу
-    var arrayFunctionValue = [1, 2, 5, 8];              //Міняємо для першого методу
+        var arrayValue = [0, 1, 2, 4];                      //Міняємо для першого методу
+        var arrayFunctionValue = [1, 2, 5, 8];              //Міняємо для першого методу
 
-    var polynomialApproximation = new PolynomialApproximation(arrayValue, arrayFunctionValue);
+        var polynomialApproximation = new PolynomialApproximation(arrayValue, arrayFunctionValue);
 
-    var arrayPolynomialApproximation = polynomialApproximation.getTableValues();
+        var arrayPolynomialApproximation = polynomialApproximation.getTableValues();
 
-    document.getElementById("drawGraphic1").onclick = drawChartPolynomialApproximation;
-    document.getElementById("showTable1").onclick = showTablePolynomialApproximation;
-
-
-    arrayValue = [1, 2, 3, 4];                      //Міняємо для другого методу
-    var f = Math.tan;                               //Міняємо для другого методу
-    var stackFunction = [Math.sin, Math.cos];       //Міняємо для другого методу
-
-    //наближення тангенсу через сінус і косинус дає доста велику похибку, інший приклад закоментив
-    //    var f = function (x) {
-    //        return x - 1;
-    //    };
-    //
-    //    var stackFunction = [
-    //        function (x) {
-    //            return x;
-    //        }, function (x) {
-    //            return x + 1;
-    //        }];
-
-    var functionalApproach = new FunctionalApproach(arrayValue, f, stackFunction);
-
-    arrayFunctionalApproach = functionalApproach.getTableValues();
-
-    document.getElementById("drawGraphic2").onclick = drawChartFunctionalApproach;
-    document.getElementById("showTable2").onclick = showTableFunctionalApproach;
+        document.getElementById("drawGraphic1").onclick = drawChartPolynomialApproximation;
+        document.getElementById("showTable1").onclick = showTablePolynomialApproximation;
 
 
-    arrayValue = [1, 2, 3, 4];                      //Міняємо для третього методу
-    f = Math.tan;                               //Міняємо для третього методу
-    stackFunction = [Math.sin, Math.cos];       //Міняємо для третього методу
+        arrayValue = [1, 2, 3, 4];                      //Міняємо для другого методу
+        var f = Math.tan;                               //Міняємо для другого методу
+        var stackFunction = [Math.sin, Math.cos];       //Міняємо для другого методу
+
+        //наближення тангенсу через сінус і косинус дає доста велику похибку, інший приклад закоментив
+        //    var f = function (x) {
+        //        return x - 1;
+        //    };
+        //
+        //    var stackFunction = [
+        //        function (x) {
+        //            return x;
+        //        }, function (x) {
+        //            return x + 1;
+        //        }];
+
+        var functionalApproach = new FunctionalApproach(arrayValue, f, stackFunction);
+
+        var arrayFunctionalApproach = functionalApproach.getTableValues();
+
+        document.getElementById("drawGraphic2").onclick = drawChartFunctionalApproach;
+        document.getElementById("showTable2").onclick = showTableFunctionalApproach;
 
 
+        arrayValue = [1, 2, 3, 4];                  //Міняємо для третього методу
+        f = Math.tan;                               //Міняємо для третього методу
+        stackFunction = [Math.sin, Math.cos];       //Міняємо для третього методу
 
-    function drawChartPolynomialApproximation() {
-        var data = google.visualization.arrayToDataTable(arrayPolynomialApproximation);
+        var functionsSystemApproach = new FunctionsSystemApproach(arrayValue, f, stackFunction, 0, Math.PI / 4);
 
-        var options = {
-            title: 'Company Performance',
-            curveType: 'function',
-            legend: {position: 'bottom'},
-            pointSize: 10,
-            pointShape: 'square'
-        };
+        var arrayFunctionsSystemApproach = functionsSystemApproach.getTableValues();
 
-        var chart = new google.visualization.LineChart(document.getElementById('divDraw1'));
+        document.getElementById("drawGraphic3").onclick = drawChartFunctionsSystemApproach;
+        document.getElementById("showTable3").onclick = showTableFunctionsSystemApproach;
 
-        chart.draw(data, options);
-    }
-    function showTablePolynomialApproximation() {
-        polynomialApproximation.showTable();
-    }
+        function drawChartPolynomialApproximation() {
+            var data = google.visualization.arrayToDataTable(arrayPolynomialApproximation);
 
-    function drawChartFunctionalApproach() {
-        var data = google.visualization.arrayToDataTable(arrayFunctionalApproach);
+            var options = {
+                title: 'Company Performance',
+                curveType: 'function',
+                legend: {position: 'bottom'},
+                pointSize: 10,
+                pointShape: 'square'
+            };
 
-        var options = {
-            title: 'Company Performance',
-            curveType: 'function',
-            legend: {position: 'bottom'},
-            pointSize: 10,
-            pointShape: 'square'
-        };
+            var chart = new google.visualization.LineChart(document.getElementById('divDraw1'));
 
-        var chart = new google.visualization.LineChart(document.getElementById('divDraw2'));
+            chart.draw(data, options);
+        }
+        function showTablePolynomialApproximation() {
+            polynomialApproximation.showTable();
+        }
 
-        chart.draw(data, options);
-    }
-    function showTableFunctionalApproach() {
-        functionalApproach.showTable();
-    }
+        function drawChartFunctionalApproach() {
+            var data = google.visualization.arrayToDataTable(arrayFunctionalApproach);
+
+            var options = {
+                title: 'Company Performance',
+                curveType: 'function',
+                legend: {position: 'bottom'},
+                pointSize: 10,
+                pointShape: 'square'
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('divDraw2'));
+
+            chart.draw(data, options);
+        }
+        function showTableFunctionalApproach() {
+            functionalApproach.showTable();
+        }
+
+        function drawChartFunctionsSystemApproach() {
+            var data = google.visualization.arrayToDataTable(arrayFunctionsSystemApproach);
+
+            var options = {
+                title: 'Company Performance',
+                curveType: 'function',
+                legend: {position: 'bottom'},
+                pointSize: 10,
+                pointShape: 'square'
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('divDraw3'));
+
+            chart.draw(data, options);
+        }
+        function showTableFunctionsSystemApproach() {
+            functionsSystemApproach.showTable();
+        }
 </script>
 </body>
 </html>
