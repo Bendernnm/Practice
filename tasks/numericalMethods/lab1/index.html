@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>lab1</title>
+    <script src="src/MyFunction.js"></script>
+    <script src="src/someMatrixFunction/Reflection.js"></script>
+    <script src="src/someMatrixFunction/TridiagonalMatrixAlgorithm.js"></script>
+    <script src="src/someMatrixFunction/ShowTable.js"></script>
+    <script src="src/differenceSchemes/NormalSchemes.js"></script>
+    <script src="src/differenceSchemes/ClearScheme.js"></script>
+    <script src="src/differenceSchemes/ImplicitScheme.js"></script>
+    <script src="src/differenceSchemes/SixPointScheme.js"></script>
 </head>
 <body>
-
+<div id="showNormalSchemes"></div>
 <script>
-
+    var step = 0.1;
+    var tay = step * step / 2
+    var obj = new NormalSchemes(step, tay);
+    obj.create();
+    showTable(obj.matrix);
 </script>
 </body>
 </html>
