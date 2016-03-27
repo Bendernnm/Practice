@@ -14,6 +14,13 @@
 </head>
 <body>
 <div>
+    <input id="clearScheme" type="button" value="Явна схема">
+    <input id="implicitScheme" type="button" value="Неявна схема">
+    <input id="sixPointScheme" type="button" value="Шеститочкова схема">
+</div>
+<br>
+
+<div>
     <div id="showNormalSchemes"></div>
     <br>
 
@@ -23,24 +30,36 @@
     <div id="showEps"></div>
 </div>
 <script>
-    var step = 0.1;
+    var step = 0.1 ;
     var tay = step * step / 2;
 
     var normalSchemes = new NormalSchemes(step, tay);
     normalSchemes.create();
     showTable("showNormalSchemes", "Normal Schemes:", normalSchemes.matrix);
 
-    //    var clearScheme = new ClearScheme(step, tay);
-    //    clearScheme.createBucket();
-    //    clearScheme.calculateMatrix();
-    //    showTable("showSchemes", "Clear Schemes:", clearScheme.matrix);
-    //    showTable("showEps", "Eps Clear Schemes:", clearScheme.getEpsMatrix(normalSchemes));
+    document.getElementById("clearScheme").onclick = function () {
+        var clearScheme = new ClearScheme(step, tay);
+        clearScheme.createBucket();
+        clearScheme.calculateMatrix();
+        showTable("showSchemes", "Clear Schemes:", clearScheme.matrix);
+        showTable("showEps", "Eps Clear Schemes:", clearScheme.getEpsMatrix(normalSchemes));
+    };
 
-    var clearScheme = new ImplicitScheme(step, tay);
-    clearScheme.createBucket();
-    clearScheme.calculateMatrix();
-    showTable("showSchemes", "Clear Schemes:", clearScheme.matrix);
-    showTable("showEps", "Eps Clear Schemes:", clearScheme.getEpsMatrix(normalSchemes));
+    document.getElementById("implicitScheme").onclick = function () {
+        var implicitScheme = new ImplicitScheme(step, tay);
+        implicitScheme.createBucket();
+        implicitScheme.calculateMatrix();
+        showTable("showSchemes", "Clear Schemes:", implicitScheme.matrix);
+        showTable("showEps", "Eps Clear Schemes:", implicitScheme.getEpsMatrix(normalSchemes));
+    };
+
+    document.getElementById("sixPointScheme").onclick = function () {
+        var sixPointScheme = new SixPointScheme(step, tay);
+        sixPointScheme.createBucket();
+        sixPointScheme.calculateMatrix();
+        showTable("showSchemes", "Clear Schemes:", sixPointScheme.matrix);
+        showTable("showEps", "Eps Clear Schemes:", sixPointScheme.getEpsMatrix(normalSchemes));
+    };
 </script>
 </body>
 </html>

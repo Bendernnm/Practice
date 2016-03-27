@@ -26,7 +26,6 @@ ClearScheme.prototype = {
                     this.tay * f(i * this.step, n * this.tay);
             }
         }
-        console.log(this.matrix);
     },
     getEpsMatrix: function (normalSchemes) {
         var matrix = [];
