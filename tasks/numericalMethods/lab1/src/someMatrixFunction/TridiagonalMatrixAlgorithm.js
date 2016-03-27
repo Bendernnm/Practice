@@ -1,12 +1,8 @@
 function calculateMatrixTMA(matrix) {
     var a = createA(matrix);
-    console.log(a);
     var b = createB(matrix);
-    //console.log(b);
     var c = createC(matrix);
-    //console.log(c);
     var d = createD(matrix);
-    //console.log(d);
 
     var c$ = createC$(a, b, c);
     var d$ = createD$(a, b, d, c$);

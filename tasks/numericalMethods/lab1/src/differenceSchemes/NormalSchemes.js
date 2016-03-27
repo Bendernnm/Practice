@@ -2,8 +2,8 @@ function NormalSchemes(step, tay) {
     this.matrix = [];
     this.step = step;
     this.tay = tay;
-    this.N = parseInt(1 / this.step);
-    this.K = parseInt(1 / tay);
+    this.N = parseInt(1 / this.step) + 1;
+    this.K = parseInt(1 / tay) + 1;
 }
 
 NormalSchemes.prototype = {
