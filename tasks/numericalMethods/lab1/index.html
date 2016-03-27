@@ -30,7 +30,13 @@
     normalSchemes.create();
     showTable("showNormalSchemes", "Normal Schemes:", normalSchemes.matrix);
 
-    var clearScheme = new ClearScheme(step, tay);
+    //    var clearScheme = new ClearScheme(step, tay);
+    //    clearScheme.createBucket();
+    //    clearScheme.calculateMatrix();
+    //    showTable("showSchemes", "Clear Schemes:", clearScheme.matrix);
+    //    showTable("showEps", "Eps Clear Schemes:", clearScheme.getEpsMatrix(normalSchemes));
+
+    var clearScheme = new ImplicitScheme(step, tay);
     clearScheme.createBucket();
     clearScheme.calculateMatrix();
     showTable("showSchemes", "Clear Schemes:", clearScheme.matrix);
