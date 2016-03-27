@@ -14,12 +14,18 @@
 </head>
 <body>
 <div id="showNormalSchemes"></div>
+<div id="showClearSchemes"></div>
 <script>
     var step = 0.1;
     var tay = step * step / 2
-    var obj = new NormalSchemes(step, tay);
-    obj.create();
-    showTable("Normal Schemes:", obj.matrix);
+
+    var normalSchemes = new NormalSchemes(step, tay);
+    normalSchemes.create();
+    showTable("showNormalSchemes", "Normal Schemes:", normalSchemes.matrix);
+
+    var clearScheme = new ClearScheme(step, tay);
+    clearScheme.createBucket();
+    showTable("showClearSchemes", "Normal Schemes:", clearScheme.matrix);
 </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-function showTable(lable, matrix) {
-    var div = document.getElementById("showNormalSchemes");
+function showTable(divId, lable, matrix) {
+    var div = document.getElementById(divId);
     div.innerHTML = lable + "<br>";
     var table = document.createElement("table");
     table.style.border = "1px solid black";
