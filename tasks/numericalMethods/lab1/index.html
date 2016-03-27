@@ -23,12 +23,12 @@
     <div id="showEps"></div>
 </div>
 <script>
-    var step = 0.1;
-    var tay = step * step / 2
-
-    var normalSchemes = new NormalSchemes(step, tay);
-    normalSchemes.create();
-    showTable("showNormalSchemes", "Normal Schemes:", normalSchemes.matrix);
+//    var step = 0.1;
+//    var tay = step * step / 2;
+//
+//    var normalSchemes = new NormalSchemes(step, tay);
+//    normalSchemes.create();
+//    showTable("showNormalSchemes", "Normal Schemes:", normalSchemes.matrix);
 
     //    var clearScheme = new ClearScheme(step, tay);
     //    clearScheme.createBucket();
@@ -36,11 +36,11 @@
     //    showTable("showSchemes", "Clear Schemes:", clearScheme.matrix);
     //    showTable("showEps", "Eps Clear Schemes:", clearScheme.getEpsMatrix(normalSchemes));
 
-    var clearScheme = new ImplicitScheme(step, tay);
-    clearScheme.createBucket();
-    clearScheme.calculateMatrix();
-    showTable("showSchemes", "Clear Schemes:", clearScheme.matrix);
-    showTable("showEps", "Eps Clear Schemes:", clearScheme.getEpsMatrix(normalSchemes));
+    //    var clearScheme = new ImplicitScheme(step, tay);
+    //    clearScheme.createBucket();
+    //    clearScheme.calculateMatrix();
+    //    showTable("showSchemes", "Clear Schemes:", clearScheme.matrix);
+    //    showTable("showEps", "Eps Clear Schemes:", clearScheme.getEpsMatrix(normalSchemes));
 </script>
 </body>
 </html>
