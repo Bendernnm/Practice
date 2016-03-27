@@ -50,16 +50,17 @@ ImplicitScheme.prototype.createMatrix = function (n) {
     matrix[length - 1][length - 2] = this.$y;
 
     for (var i = 0; i < length; i++) {
-        var yni = this.matrix[n][i];
-
-        var x = i * this.step
-        var t = this.tay + n * this.tay;
-        var fValue = f(x, t);
-
-        matrix[i][length] = -(yni + this.tay * fValue);
+        matrix[i][length] = this.getF(n, i);
     }
 
-    console.log("matrix");
-    console.log(matrix);
     return matrix;
+};
+ImplicitScheme.prototype.getF = function (n, i) {
+    var yni = this.matrix[n][i];
+
+    var x = i * this.step
+    var t = this.tay + n * this.tay;
+    var fValue = f(x, t);
+
+    return -(yni + this.tay * fValue);
 };
