@@ -1,7 +1,6 @@
-function showTable(matrix) {
-    console.log(matrix[0][0]);
-    console.log("start");
+function showTable(lable, matrix) {
     var div = document.getElementById("showNormalSchemes");
+    div.innerHTML = lable + "<br>";
     var table = document.createElement("table");
     table.style.border = "1px solid black";
 
