@@ -13,8 +13,15 @@
     <script src="src/differenceSchemes/SixPointScheme.js"></script>
 </head>
 <body>
-<div id="showNormalSchemes"></div>
-<div id="showClearSchemes"></div>
+<div>
+    <div id="showNormalSchemes"></div>
+    <br>
+
+    <div id="showSchemes"></div>
+    <br>
+
+    <div id="showEps"></div>
+</div>
 <script>
     var step = 0.1;
     var tay = step * step / 2
@@ -25,7 +32,9 @@
 
     var clearScheme = new ClearScheme(step, tay);
     clearScheme.createBucket();
-    showTable("showClearSchemes", "Normal Schemes:", clearScheme.matrix);
+    clearScheme.calculateMatrix();
+    showTable("showSchemes", "Clear Schemes:", clearScheme.matrix);
+    showTable("showEps", "Eps Clear Schemes:", clearScheme.getEpsMatrix(normalSchemes));
 </script>
 </body>
 </html>

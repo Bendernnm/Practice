@@ -55,7 +55,7 @@ function u$xx(x, t) {
 
     var thirdSecond = -numerator / denominator;
 
-    return first + second + third(thirdFirst + thirdSecond);
+    return first + second + third * (thirdFirst + thirdSecond);
 }
 
 function f(x, t) {
