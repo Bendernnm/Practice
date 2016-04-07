@@ -9,7 +9,7 @@ function PolynomialApproximation(arrayValue, functionValue) {
         this.arrayY = functionValue;
     }
 
-    this.averageMatrix = new AverageMatrix(this.arrayX, this.arrayY);
+    this.averageMatrix = new AverageMatrix(this.arrayX, this.arrayY, 4);
     this.averagePolynomial = calculateMatrix(this.averageMatrix.matrix);
 
     this.array$Y = getCloseFunction(this.arrayX, this.arrayY, this.averagePolynomial);
@@ -316,6 +316,7 @@ function FunctionsSystemApproach(arrayValue, functionValue, stackFunction, low, 
     this.matrix = [];
     var rowCount = stackFunction.length;
     this.createFunctionalMatrix(rowCount);
+    console.log(this.matrix);
 
     this.constList = calculateMatrix(this.matrix);
     this.array$Y = this.getCloseFunction();
@@ -366,7 +367,6 @@ FunctionsSystemApproach.prototype = {
         };
         return calculateIntegral(this.low, this.up, 1000, f);
     },
-
     getCloseFunction: function getCloseFunction() {
         array$Y = [];
 

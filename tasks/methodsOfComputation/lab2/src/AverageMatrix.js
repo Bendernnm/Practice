@@ -1,7 +1,7 @@
-function AverageMatrix(arrayX, arrayY) {
+function AverageMatrix(arrayX, arrayY, count) {
     this.matrix = [];
-    this.countColumn = arrayX.length;
-    this.countRow = this.countColumn - 1;
+    this.countColumn = count + 1;
+    this.countRow = count;
 
     for (var i = 0; i < this.countRow; i++) {
         this.matrix[i] = [];
