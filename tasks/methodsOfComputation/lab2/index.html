@@ -44,48 +44,11 @@
 </div>
 <script>
     google.charts.load('current', {'packages': ['corechart']});
-
-    var arrayValue = [0, 1, 2, 4];                      //Міняємо для першого методу
-    var arrayFunctionValue = [1, 2, 5, 8];              //Міняємо для першого методу
-
-    var polynomialApproximation = new PolynomialApproximation(arrayValue, arrayFunctionValue);
-
-    var arrayPolynomialApproximation = polynomialApproximation.getTableValues();
-
-    document.getElementById("drawGraphic1").onclick = drawChartPolynomialApproximation;
-    document.getElementById("showTable1").onclick = showTablePolynomialApproximation;
-
-
-    arrayValue = [0.1, 0.2, 0.3, 0.4];                      //Міняємо для другого методу
-    var f = Math.tan;                               //Міняємо для другого методу
-    var stackFunction = [Math.sin, Math.cos];       //Міняємо для другого методу
-
-    //наближення тангенсу через сінус і косинус дає доста велику похибку, інший приклад закоментив
-    //    var f = function (x) {
-    //        return x - 1;
-    //    };
-    //
-    //    var stackFunction = [
-    //        function (x) {
-    //            return x;
-    //        }, function (x) {
-    //            return x + 1;
-    //        }];
-
-    var functionalApproach = new FunctionalApproach(arrayValue, f, stackFunction);
-
-    var arrayFunctionalApproach = functionalApproach.getTableValues();
-
-    document.getElementById("drawGraphic2").onclick = drawChartFunctionalApproach;
-    document.getElementById("showTable2").onclick = showTableFunctionalApproach;
-
-
-    arrayValue = [0.1, 0.4, 0.6, 0.7];                  //Міняємо для третього методу
-    f = function (x) {
-        return 2 / x + x / 2;
-    };                               //Міняємо для третього методу
-
-    stackFunction = [
+    var arrayValue = [1, 1.25, 1.5, 1.75, 2];
+    var arrayFunctionValue = function (value) {
+        return 2 / value + value / 2;
+    };
+    var stackFunction =  [
         function (x) {
             return 1;
         },
@@ -100,17 +63,28 @@
         },
         function (x) {
             return 1 / 8 * (35 * x * x * x * x - 30 * x * x + 3);
-        }];       //Міняємо для третього методу
+        }];
 
-    console.log("stackFunction");
-    console.log(stackFunction);
+    var polynomialApproximation = new PolynomialApproximation(arrayValue, new Function(arrayFunctionValue));
+    var arrayPolynomialApproximation = polynomialApproximation.getTableValues();
 
-    var functionsSystemApproach = new FunctionsSystemApproach(arrayValue, f, stackFunction, 0.1, Math.PI / 4);
+    document.getElementById("drawGraphic1").onclick = drawChartPolynomialApproximation;
+    document.getElementById("showTable1").onclick = showTablePolynomialApproximation;
 
+
+    var functionalApproach = new FunctionalApproach(arrayValue, arrayFunctionValue, stackFunction);
+    var arrayFunctionalApproach = functionalApproach.getTableValues();
+
+    document.getElementById("drawGraphic2").onclick = drawChartFunctionalApproach;
+    document.getElementById("showTable2").onclick = showTableFunctionalApproach;
+
+
+    var functionsSystemApproach = new FunctionsSystemApproach(arrayValue, arrayFunctionValue, stackFunction, 1, 2);
     var arrayFunctionsSystemApproach = functionsSystemApproach.getTableValues();
 
     document.getElementById("drawGraphic3").onclick = drawChartFunctionsSystemApproach;
     document.getElementById("showTable3").onclick = showTableFunctionsSystemApproach;
+
 
     function drawChartPolynomialApproximation() {
         var data = google.visualization.arrayToDataTable(arrayPolynomialApproximation);
