@@ -1,6 +1,6 @@
 function methodOfDividingTheSegmentInHalf(a, b, h, eps, f) {
-    while (Math.abs(b - a) < eps) {
-        var c = (b - a) / 2;
+    while (Math.abs(b - a) > eps) {
+        var c = (a + b) / 2;
         if (f(c) == 0) {
             return c;
         }
@@ -13,5 +13,15 @@ function methodOfDividingTheSegmentInHalf(a, b, h, eps, f) {
             b = c;
         }
     }
-    return (b - a) / 2;
+    return (a + b) / 2;
+}
+
+function method1() {
+    alert(1);
+}
+function method2() {
+    alert(2);
+}
+function method3() {
+    alert(3);
 }

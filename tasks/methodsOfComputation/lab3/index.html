@@ -7,6 +7,8 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="src/Draw.js"></script>
     <script type="text/javascript" src="src/Function.js"></script>
+    <script type="text/javascript" src="src/MethodsOfFindingRootsOfEquation.js"></script>
+    <script type="text/javascript" src="src/CalculateGrafic.js"></script>
 </head>
 
 <body>
@@ -16,7 +18,7 @@
     b: <input type="text" id="b" value="10" style="margin: 1px"> <br>
     h: <input type="text" id="h" value="0.1" style="margin: 1px"> <br>
     eps: <input type="text" id="eps" value="0.001" style="margin: 1px"> <br>
-    <center><input type="button" id="drawChart" value="Draw" style="margin: 1px"></center>
+    <center><input type="button" id="drawChart" value="Намалювати" style="margin: 1px"></center>
 </div>
 <div style="border: 2px black solid; padding: 5px; width: 16%; margin-left: 10px;float: left">
     Виберіть функцію: <br>
@@ -25,10 +27,16 @@
 </div>
 <div style="border: 2px black solid; padding: 5px; width: 16%; margin-left: 10px;float: left">
     Виберіть метод: <br>
-    <input type="radio" name="chooseMethod" value="1"> Поділу пополам <br>
+    <input type="radio" name="chooseMethod" value="1" checked="checked"> Поділу пополам <br>
     <input type="radio" name="chooseMethod" value="2"> Метод хорд <br>
     <input type="radio" name="chooseMethod" value="3"> Метод дотичних <br>
     <input type="radio" name="chooseMethod" value="4"> Метод простої ітерації
+</div>
+<div style="border: 2px black solid; padding: 5px; width: 16%; margin-left: 10px;float: left">
+    Знайти корінь графічно: <br>
+    a: <input type="text" id="ga" value="-10" style="margin: 1px"> <br>
+    b: <input type="text" id="gb" value="10" style="margin: 1px"> <br>
+    <center><input type="button" id="gFind" value="Обчислити" style="margin: 1px"></center>
 </div>
 
 <div class="clear"></div>
@@ -41,6 +49,10 @@
     google.charts.load('current', {'packages': ['corechart']});
 
     document.getElementById("drawChart").onclick = drawChart;
+
+    document.getElementById("gFind").onclick = function () {
+        calculateGrafic();
+    }
 </script>
 
 

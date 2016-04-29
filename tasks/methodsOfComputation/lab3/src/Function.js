@@ -1,5 +1,5 @@
 function function_ex_1(x) {
-    return x * x - 10 //- Math.pow(0.5, x) - 1;
+    return x * x - 10; //- Math.pow(0.5, x) - 1;
 }
 
 function function_ex_2(x) {

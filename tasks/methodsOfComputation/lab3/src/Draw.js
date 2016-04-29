@@ -1,6 +1,5 @@
 function drawChart() {
-    console.log("::: " + getRadioValue());
-    var functionNumber = getRadioValue();
+    var functionNumber = getRadioValue("chooseFunction");
 
     var data = google.visualization.arrayToDataTable(getPoints(functionNumber == 1 ? function_ex_1 : function_ex_2));
 
@@ -36,14 +35,12 @@ function drawChart() {
             matrix[i] = [array_x[i], array_y[i]];
         }
 
-        console.log(matrix);
-
         return matrix;
     }
 }
 
-function getRadioValue() {
-    var radio = document.getElementsByName("chooseFunction");
+function getRadioValue(id) {
+    var radio = document.getElementsByName(id);
     for (var i = 0; i < radio.length; i++) {
         if (radio[i].checked) {
             return radio[i].value;
