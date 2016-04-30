@@ -16,8 +16,10 @@ function methodOfDividingTheSegmentInHalf(a, b, h, eps, f) {
     return (a + b) / 2;
 }
 
-function method1() {
-    alert(1);
+function method1(a, b, h, eps, f) {
+    var x_ = a;
+    var last_point = b;
+
 }
 function method2() {
     alert(2);

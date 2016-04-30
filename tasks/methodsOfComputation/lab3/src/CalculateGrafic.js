@@ -25,6 +25,7 @@ function calculateGrafic() {
             break;
     }
 
-    var result = method($a, $b, $h, $eps, f);
-    alert(result);
+    var resultValue = method($a, $b, $h, $eps, f);
+    var resultString = "[" + $a + ", " + $b + "]: " + resultValue;
+    alert(resultString);
 }
