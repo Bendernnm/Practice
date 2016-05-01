@@ -1,5 +1,8 @@
 function methodOfDividingTheSegmentInHalf(a, b, h, eps, f) {
+    var count = 0;
+
     while (Math.abs(b - a) > eps) {
+        count++;
         var c = (a + b) / 2;
         if (f(c) == 0) {
             return c;
@@ -13,17 +16,88 @@ function methodOfDividingTheSegmentInHalf(a, b, h, eps, f) {
             b = c;
         }
     }
+
+    alert("Count steps: " + count + ".");
+
     return (a + b) / 2;
 }
 
 function method1(a, b, h, eps, f) {
-    var x_ = a;
-    var last_point = b;
+    var count = 0;
 
+    var numberOption = h;
+    var check = numberOption == 1;
+
+    var x_, last_point;
+    if (check) {
+        x_ = a;
+        last_point = b;
+    }
+    else {
+        x_ = b;
+        last_point = a;
+    }
+
+    var x_k = (x_ * f(last_point) - last_point * f(x_)) / (f(last_point) - f(x_));
+    while (Math.abs(x_k - x_) > eps) {
+        count++;
+        x_ = x_k;
+        x_k = (x_ * f(last_point) - last_point * f(x_)) / (f(last_point) - f(x_));
+    }
+
+    alert("Count steps: " + count + ".");
+
+    return x_k;
 }
-function method2() {
-    alert(2);
+
+function method2(a, b, h, eps, f) {
+    var count = 0;
+
+    var f_ = f == function_ex_1 ? function_ex_1_ : function_ex_2_;
+
+    var numberOption = h;
+    var check = numberOption == 1;
+
+    var x_;
+    if (!check) {
+        x_ = a;
+    }
+    else {
+        x_ = b;
+    }
+
+    var x_k = x_ - ((f(x_)) / (f_(x_)));
+
+    while (Math.abs(x_k - x_) > eps) {
+        count++;
+
+        x_ = x_k;
+
+        var f_x = (f(x_));
+        var f_x_ = (f_(x_));
+        x_k = x_ - ( f_x / f_x_ );
+    }
+
+    alert("Count steps: " + count + ".");
+
+    return x_k;
 }
-function method3() {
-    alert(3);
+
+function method3(a, b, h, eps, f) {
+    var count = 0;
+
+    var x_ = a;
+    var x_k = x_ + (0.1) * f(x_);
+    console.log("\n" + x_);
+    console.log(x_k);
+
+
+    while (Math.abs(x_ - x_k) < eps) {
+        x_ = x_k;
+        x_k = x_ + 2 * f(x_);
+    }
+
+    alert("Count steps: " + count + ".");
+
+    return x_k;
 }
