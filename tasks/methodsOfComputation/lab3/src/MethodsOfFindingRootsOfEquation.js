@@ -1,5 +1,7 @@
 function methodOfDividingTheSegmentInHalf(a, b, h, eps, f) {
     var count = 0;
+    var $a = a;
+    var $b = b;
 
     while (Math.abs(b - a) > eps) {
         count++;
@@ -17,9 +19,7 @@ function methodOfDividingTheSegmentInHalf(a, b, h, eps, f) {
         }
     }
 
-    alert("Count steps: " + count + ".");
-
-    return (a + b) / 2;
+    return "[" + $a + ", " + $b + "] {" + count + "}: " + ((a + b) / 2) + ".";
 }
 
 function method1(a, b, h, eps, f) {
@@ -45,9 +45,7 @@ function method1(a, b, h, eps, f) {
         x_k = (x_ * f(last_point) - last_point * f(x_)) / (f(last_point) - f(x_));
     }
 
-    alert("Count steps: " + count + ".");
-
-    return x_k;
+    return "[" + a + ", " + b + "] {" + count + "} : " + x_k + ".";
 }
 
 function method2(a, b, h, eps, f) {
@@ -78,9 +76,7 @@ function method2(a, b, h, eps, f) {
         x_k = x_ - ( f_x / f_x_ );
     }
 
-    alert("Count steps: " + count + ".");
-
-    return x_k;
+    return "[" + a + ", " + b + "] {" + count + "} : " + x_k + ".";
 }
 
 function method3(a, b, h, eps, f) {
@@ -92,12 +88,11 @@ function method3(a, b, h, eps, f) {
     console.log(x_k);
 
 
-    while (Math.abs(x_ - x_k) < eps) {
+    while (Math.abs(x_ - x_k) > eps) {
+        count++;
         x_ = x_k;
         x_k = x_ + 2 * f(x_);
     }
 
-    alert("Count steps: " + count + ".");
-
-    return x_k;
+    return "[" + a + ", " + b + "] {" + count + "} : " + x_k + ".";
 }

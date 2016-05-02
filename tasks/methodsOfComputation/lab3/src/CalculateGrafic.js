@@ -25,12 +25,12 @@ function calculateGrafic() {
             break;
     }
 
-    var resultValue = method($a, $b, parseFloat(getRadioValue("option")), $eps, f);
-    var resultString = "[" + $a + ", " + $b + "]: " + resultValue;
-    alert(resultString);
+    //var resultValue = method($a, $b, parseFloat(getRadioValue("option")), $eps, f);
+    //var resultString = "[" + $a + ", " + $b + "]: " + resultValue;
+    alert(method($a, $b, parseFloat(getRadioValue("option")), $eps, f));
 }
 
-function calculateGramm(a, b, _x_) {
+function calculateStormingMethod(a, b, _x_) {
     var eps = parseFloat(document.getElementById("eps").value);
 
     var numberFunction = getRadioValue("chooseFunction");
@@ -54,5 +54,14 @@ function calculateGramm(a, b, _x_) {
             break;
     }
 
-    return "[" + a + ", " + b + "]: " + method(a, b, _x_, eps, f);
+    return method(a, b, _x_, eps, f);
+}
+
+function calculate() {
+    document.getElementById("check").checked = true;
+    var str = "";
+    str += calculateStormingMethod(-3, 0, true) + "\n";
+    str += calculateStormingMethod(0, 1, 2) + "\n";
+    str += calculateStormingMethod(1, 4, 1) + "\n";
+    alert(str);
 }

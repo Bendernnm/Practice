@@ -9,6 +9,16 @@
     <script type="text/javascript" src="src/Function.js"></script>
     <script type="text/javascript" src="src/MethodsOfFindingRootsOfEquation.js"></script>
     <script type="text/javascript" src="src/CalculateGrafic.js"></script>
+    <style>
+        td {
+            padding: 10px;
+            font-size: 45px;
+        }
+
+        p {
+            font-size: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,7 +33,7 @@
 <div style="border: 2px black solid; padding: 5px; width: 16%; margin-left: 10px;float: left">
     Виберіть функцію: <br>
     <input type="radio" name="chooseFunction" value="1" checked="checked"> y = x - 0.5^x - 1 <br>
-    <input type="radio" name="chooseFunction" value="2"> f(x) = 2*x*x*x - 3*x*x - 12*x + 8
+    <input type="radio" name="chooseFunction" value="2" id="check"> f(x) = 2*x*x*x - 3*x*x - 12*x + 8
 </div>
 <div style="border: 2px black solid; padding: 5px; width: 16%; margin-left: 10px;float: left">
     Виберіть метод: <br>
@@ -50,11 +60,66 @@
     <div id="chartBlock" style="width: 1200px; height: 500px"></div>
 </center>
 
+<div style="padding: 5px; width: 16%; margin-left: 10px;float: left">
+    <p>r1(x) = 9*x - 6;</p>
+
+    <p>r2(x) = 124/9;</p>
+    <table border="1px black solid">
+        <tr>
+            <td></td>
+            <td>-3</td>
+            <td>0</td>
+            <td>1</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>f(x)</td>
+            <td>-</td>
+            <td>+</td>
+            <td>-</td>
+            <td>+</td>
+        </tr>
+        <tr>
+            <td>f'(x)</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>+</td>
+        </tr>
+        <tr>
+            <td>r1(x)</td>
+            <td>-</td>
+            <td>-</td>
+            <td>+</td>
+            <td>+</td>
+        </tr>
+        <tr>
+            <td>r2(x)</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+</td>
+            <td>+</td>
+        </tr>
+
+        <tr>
+            <td>+/-</td>
+            <td>1</td>
+            <td>2</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+    </table>
+    <br>
+    <input type="button" id="calculateStormingMethod" value="Calculate Storming Method" style="margin: 1px">
+</div>
+
 <script type="text/javascript">
     google.charts.load('current', {'packages': ['corechart']});
 
     document.getElementById("drawChart").onclick = drawChart;
     document.getElementById("gFind").onclick = calculateGrafic;
+
+    document.getElementById("calculateStormingMethod").onclick = calculate;
 </script>
 
 

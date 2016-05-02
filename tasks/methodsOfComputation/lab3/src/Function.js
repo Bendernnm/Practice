@@ -1,9 +1,9 @@
 function function_ex_1(x) {
-    return x * x - 10; //- Math.pow(0.5, x) - 1;
+    return x - Math.pow(0.5, x) - 1; //* x - 10;
 }
 
 function function_ex_1_(x) {
-    return 2 * x; //- Math.pow(0.5, x) - 1;
+    return 1 - Math.pow(0.5, x) * Math.log(0.5);//2 * x;
 }
 
 function function_ex_2_(x) {
