@@ -82,8 +82,8 @@ function method2(a, b, h, eps, f) {
 function method3(a, b, h, eps, f) {
     var count = 0;
 
-    var x_ = a;
-    var x_k = x_ + (0.1) * f(x_);
+    var x_ = b;
+    var x_k = x_ + (0.01) * f(x_);
     console.log("\n" + x_);
     console.log(x_k);
 
@@ -91,7 +91,7 @@ function method3(a, b, h, eps, f) {
     while (Math.abs(x_ - x_k) > eps) {
         count++;
         x_ = x_k;
-        x_k = x_ + 2 * f(x_);
+        x_k = x_ + 0.01 * f(x_);
     }
 
     return "[" + a + ", " + b + "] {" + count + "} : " + x_k + ".";

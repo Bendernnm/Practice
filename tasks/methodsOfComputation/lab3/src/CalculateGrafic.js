@@ -60,7 +60,7 @@ function calculateStormingMethod(a, b, _x_) {
 function calculate() {
     document.getElementById("check").checked = true;
     var str = "";
-    str += calculateStormingMethod(-3, 0, true) + "\n";
+    str += calculateStormingMethod(-3, 0, false) + "\n";
     str += calculateStormingMethod(0, 1, 2) + "\n";
     str += calculateStormingMethod(1, 4, 1) + "\n";
     alert(str);
