@@ -1,0 +1,26 @@
+.block {
+    border: 1px black solid;
+    width: 45%;
+    height: 100%;
+    margin-top: 4%;
+    float: left;
+    position: relative;
+}
+
+
+body, html {
+    width: 99.8%;
+    height: 90%;
+}
+
+#line_vertical{
+    border: 1px black solid;
+    width: 1%;
+    height: 100%;
+    margin-top: 4%;
+    margin-left: 4%;
+    margin-right: 4%;
+    background-color: coral;
+    float: left;
+    position: relative;
+}
