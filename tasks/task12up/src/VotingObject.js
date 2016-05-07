@@ -18,6 +18,7 @@ function Voting(idImage, idLike, idDislike, idResult) {
         }.bind(self);
     }
 }
+
 Voting.prototype = {
     like: function () {
         this.count++;
@@ -70,11 +71,3 @@ Voting.prototype = {
         }
     }
 };
-
-var obj1 = new Voting("img_left", "left_plus", "left_minus", "left_result");
-var obj2 = new Voting("img_right", "right_plus", "right_minus", "right_result");
-
-do {
-    obj1.randomImage();
-    obj2.randomImage();
-} while ((obj1.rnd == obj2.rnd) && (obj1.rnd != -1) && (obj2.rnd != -1));
