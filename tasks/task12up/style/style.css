@@ -1,19 +1,49 @@
-.block {
+.info_block {
     border: 1px black solid;
     width: 45%;
     height: 100%;
     margin-top: 4%;
     float: left;
     position: relative;
+    background-color: aliceblue;
 }
 
+.content_block {
+    margin: 10%;
+    padding: 5%;
+    background-color: black;
+}
+
+.img_block {
+    width: 100%;
+    height: 100%;
+}
+
+.btn_block {
+
+    width: 100%;
+    height: 18.3%;
+    background-color: wheat;
+}
+
+.btn{
+    font-size: 50px;
+    float: left;
+    width: 18%;
+    height: 50%;
+    margin-left: 12%;
+    background-color: #cccccc;
+    text-align: center;
+    border: 1px black solid;
+    margin-top: 4%;
+}
 
 body, html {
     width: 99.8%;
     height: 90%;
 }
 
-#line_vertical{
+#line_vertical {
     border: 1px black solid;
     width: 1%;
     height: 100%;
@@ -23,4 +53,15 @@ body, html {
     background-color: coral;
     float: left;
     position: relative;
+}
+
+#left_plus, #right_plus{
+    background-color: #9bd911;
+}
+#left_minus, #right_minus{
+    background-color: darkred;
+}
+
+#left_result,#right_result{
+    font-size: 50px;
 }
