@@ -1,0 +1,29 @@
+.btn_block {
+
+    width: 100%;
+    height: 18.3%;
+    background-color: wheat;
+}
+
+.btn{
+    font-size: 50px;
+    float: left;
+    width: 18%;
+    height: 50%;
+    margin-left: 12%;
+    background-color: #cccccc;
+    text-align: center;
+    border: 1px black solid;
+    margin-top: 4%;
+}
+
+#left_plus, #right_plus{
+    background-color: #9bd911;
+}
+#left_minus, #right_minus{
+    background-color: darkred;
+}
+
+#left_result,#right_result{
+    font-size: 50px;
+}

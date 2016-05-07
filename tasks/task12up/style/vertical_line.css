@@ -1,0 +1,11 @@
+#line_vertical {
+    border: 1px black solid;
+    width: 1%;
+    height: 100%;
+    margin-top: 4%;
+    margin-left: 4%;
+    margin-right: 4%;
+    background-color: coral;
+    float: left;
+    position: relative;
+}
