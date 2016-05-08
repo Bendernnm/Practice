@@ -7,13 +7,14 @@ function ObjectMatrix(divId) {
 
     this.matrixForm = document.createElement("div");
     this.matrix = [];
+
+    this.regExp = /^\w+$/i;
+    this.label = "Object";
+    this.value = "Object_";
 }
 
 
 ObjectMatrix.prototype = {
-    regExp: /^\w+$/i,
-    label: "Object",
-
     getRowCount: function () {
         return this.matrix.length;
     },
@@ -23,6 +24,7 @@ ObjectMatrix.prototype = {
     getValue: function (i, j) {
         return this.matrix[i, j].value;
     },
+
 
     setMatrix: function (matrix) {
         var n = matrix.length;
@@ -52,8 +54,7 @@ ObjectMatrix.prototype = {
         for (var i = 0; i < n; i++) {
             this.matrix[i] = [];
             for (j = 0; j < m; j++) {
-                var str = "Object_" + i + "_" + j + "_";
-                this.matrix[i][j] = createObjectMatrixElement(this.regExp, this.label, str);
+                this.matrix[i][j] = createObjectMatrixElement(this.regExp, this.label, this.value);
             }
         }
     },
@@ -90,8 +91,7 @@ ObjectMatrix.prototype = {
         this.matrix[n] = [];
         var buffElement = document.createElement("p");
         for (i = 0; i < m; i++) {
-            var str = "Object_" + i + "_" + j + "_";
-            this.matrix[n][i] = createObjectMatrixElement(this.regExp, this.label, str);
+            this.matrix[n][i] = createObjectMatrixElement(this.regExp, this.label, this.value);
             buffElement.appendChild(this.matrix[n][i]);
         }
         this.matrixForm.appendChild(buffElement);
@@ -110,8 +110,7 @@ ObjectMatrix.prototype = {
         var matrixParagraphs = this.matrixForm.getElementsByTagName("p");
 
         for (var i = 0; i < n; i++) {
-            var str = "Object_" + i + "_" + j + "_";
-            this.matrix[i][m] = createObjectMatrixElement(this.regExp, this.label, str);
+            this.matrix[i][m] = createObjectMatrixElement(this.regExp, this.label, this.value);
             matrixParagraphs[i].appendChild(this.matrix[i][m]);
         }
     },
