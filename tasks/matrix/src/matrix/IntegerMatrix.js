@@ -8,7 +8,7 @@ function IntegerMatrix(divId) {
     this.matrixForm = document.createElement("div");
     this.matrix = [];
 
-    this.regExp = /^\d+$/i;
+    this.regExp = /^[+-]?\d+$/;
     this.label = "0";
     this.value = "0";
 }
