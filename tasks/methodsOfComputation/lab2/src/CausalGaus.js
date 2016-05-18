@@ -7,7 +7,6 @@ function calculateMatrix(useMatrix) {
         }
     }
 
-
     var rowCount = matrix.length;
     var columnCount = matrix[0].length;
 
@@ -17,6 +16,10 @@ function calculateMatrix(useMatrix) {
     }
 
     for (var i = 0; i < rowCount; i++) {
+        if (matrix[i][i] == 0) {
+            swapRow(i, i + 1);
+        }
+
         var divider = matrix[i][i];
         divideRow(matrix, i, divider);
 
@@ -53,5 +56,13 @@ function calculateMatrix(useMatrix) {
 
     function getLastcolumn() {
         return columnCount - 1;
+    }
+
+    function swapRow(i, j) {
+        for (var k = 0; k < matrix[0].length; k++) {
+            var buff = matrix[i][k];
+            matrix[i][k] = matrix[j][k];
+            matrix[j][k] = buff;
+        }
     }
 }

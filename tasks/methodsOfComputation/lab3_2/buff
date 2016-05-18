@@ -1,0 +1,52 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(getPoints(function (x) {
+                return Math.cos(x + 0.5) - 2;
+            }, function (x) {
+                return Math.ar;
+            }));
+
+            var options = {
+                title: 'Lab',
+                curveType: 'function',
+                legend: {position: 'bottom'},
+                colors: ['red'],
+                fontSize: 25
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('draw'));
+
+            chart.draw(data, options);
+
+            function getPoints(func1, func2) {
+                var matrix = [];
+                matrix[0] = ["X", "Y1", "Y2"];
+                var $a = -5;
+                var $b = 5;
+                var $h = 0.001;
+                var count = ($b - $a) / $h;
+
+                var array_x = [];
+                var array_y1 = [];
+                var array_y2 = [];
+
+                for (var i = 0; i < count; i++) {
+                    array_x[i] = $a + i * $h;
+                    array_y1[i] = func1(array_x[i]);
+                    array_y2[i] = func2(array_x[i]);
+                }
+
+                for (var i = 1; i < count; i++) {
+                    matrix[i] = [array_x[i], array_y1[i], array_y2[i]];
+                }
+
+                console.log(matrix);
+                return matrix;
+            }
+        }
+    </script>
