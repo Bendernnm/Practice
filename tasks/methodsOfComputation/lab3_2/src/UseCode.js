@@ -33,7 +33,7 @@ do {
     y0 += result0[1];
     console.log("x = " + x0 + ". y = " + y0 + ".");
 
-} while (Math.abs(xk - x0) > 0.00001 && Math.abs(yk - y0) > 0.00001);
+} while (Math.abs(xk - x0) > 0.000001 && Math.abs(yk - y0) > 0.000001);
 
 console.log("\nx = " + x0);
 console.log("y = " + y0);
