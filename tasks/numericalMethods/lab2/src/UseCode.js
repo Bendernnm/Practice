@@ -1,45 +1,54 @@
-var btnCalculate = document.getElementById("btnCalculate");
-btnCalculate.onclick = calculate;
+var write1 = document.getElementById("write1");
+var write2 = document.getElementById("write2");
+
+var btnCalculateFure = document.getElementById("btnCalculateFure");
+btnCalculateFure.onclick = calculateFure;
+
+var btnCalculateTMA = document.getElementById("btnCalculateTMA");
+btnCalculateTMA.onclick = calculateFure;
 
 const PI = Math.PI;
 const l = 2.0;
-var div = document.getElementById("write");
 
-function calculate() {
+function calculateFure() {
     const N = parseInt(document.getElementById("N").value);
     const h = l / N;
 
     var X = calculateX(N, h);
-    appendTable("X", arrayToTable(X));
-    divBr();
+    appendTable(write1, "X", arrayToTable(X));
+    divBr(write1);
 
     var mu = calculateMu(N, h);
-    appendTable("Mu", matrixToTable(mu));
-    divBr();
+    appendTable(write1, "Mu", matrixToTable(mu));
+    divBr(write1);
 
     var f_ = calculateF_(mu, N, h, X);
-    appendTable("F_", arrayToTable(f_));
-    divBr();
+    appendTable(write1, "F_", arrayToTable(f_));
+    divBr(write1);
 
     var lymbda = calculateLymbda(N, h);
-    appendTable("lymbda", arrayToTable(lymbda));
-    divBr();
+    appendTable(write1, "lymbda", arrayToTable(lymbda));
+    divBr(write1);
 
     var c = calculateC(f_, N, lymbda);
-    appendTable("C", arrayToTable(c));
-    divBr();
+    appendTable(write1, "C", arrayToTable(c));
+    divBr(write1);
 
     var y_ = calculateY_(c, N, mu);
-    appendTable("Y_", arrayToTable(y_));
-    divBr();
+    appendTable(write1, "Y_", arrayToTable(y_));
+    divBr(write1);
 
     var y = calculateY(N, X);
-    appendTable("Y", arrayToTable(y));
-    divBr();
+    appendTable(write1, "Y", arrayToTable(y));
+    divBr(write1);
 
     var eps = calculateEps(N, y, y_);
-    appendTable("Eps", arrayToTable(eps));
-    divBr();
+    appendTable(write1, "Eps", arrayToTable(eps));
+    divBr(write1);
+}
+
+function calculateTMA(){
+
 }
 
 function calculateX(N, h) {
@@ -181,11 +190,11 @@ function matrixToTable(matrix) {
     return table;
 }
 
-function appendTable(label, table) {
+function appendTable(div, label, table) {
     div.innerHTML += label + ":<br>";
     div.appendChild(table);
 }
-function divBr() {
+function divBr(div) {
     div.innerHTML += "<br>";
 }
 
@@ -198,3 +207,5 @@ function arrayMax(array) {
     }
     return max;
 }
+
+
