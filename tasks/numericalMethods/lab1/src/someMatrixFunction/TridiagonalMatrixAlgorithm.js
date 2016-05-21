@@ -90,7 +90,7 @@ function calculateMatrixTMA(matrix) {
         var lastIndex = c$.length - 1;
         x[lastIndex] = d$[lastIndex];
         for (var i = lastIndex - 1; i >= 0; i--) {
-            x[i] = d$[i] - c$[i] * x[i + 1];
+            x[i] = d$[i] + c$[i] * x[i + 1];
         }
         return x;
     }

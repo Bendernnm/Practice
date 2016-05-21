@@ -5,12 +5,14 @@ var btnCalculateFure = document.getElementById("btnCalculateFure");
 btnCalculateFure.onclick = calculateFure;
 
 var btnCalculateTMA = document.getElementById("btnCalculateTMA");
-btnCalculateTMA.onclick = calculateFure;
+btnCalculateTMA.onclick = calculateTMA;
 
 const PI = Math.PI;
 const l = 2.0;
 
 function calculateFure() {
+    write1.innerHTML = "";
+
     const N = parseInt(document.getElementById("N").value);
     const h = l / N;
 
@@ -47,9 +49,33 @@ function calculateFure() {
     divBr(write1);
 }
 
-function calculateTMA(){
+function calculateTMA() {
+    write2.innerHTML = "";
 
+    const N = parseInt(document.getElementById("N").value);
+    const h = l / N;
+
+    var x = calculateX(N, h);
+    appendTable(write2, "X", arrayToTable(x));
+    divBr(write2);
+
+    var matrix = createMatrix(N, h);
+    appendTable(write2, "Matrix", matrixToTable(matrix));
+    divBr(write2);
+
+    var y_ = calculateMatrixTMA(matrix);
+    appendTable(write2, "Y_", arrayToTable(y_));
+    divBr(write2);
+
+    var y = calculateY(N, x);
+    appendTable(write2, "Y", arrayToTable(y));
+    divBr(write2);
+
+    var eps = calculateEps(N, y, y_);
+    appendTable(write2, "Eps", arrayToTable(eps));
+    divBr(write2);
 }
+
 
 function calculateX(N, h) {
     let x = [];
@@ -156,6 +182,62 @@ function calculateEps(N, y, y_) {
 
     return eps;
 }
+
+function createMatrix(N, h) {
+    var matrix = [];
+    var length = N - 2;
+
+    var h2 = h * h;
+    var a = 1 / h2;
+    var b = -2 / h2;
+    var c = 1 / h2;
+
+    matrix[0] = [];
+    matrix[0][0] = b;
+    matrix[0][1] = c;
+
+    for (var i = 2; i < length; i++) {
+        matrix[0][i] = 0;
+    }
+
+    for (var i = 1; i < length - 1; i++) {
+        matrix[i] = [];
+        for (var j = 0; j < length; j++) {
+            switch (j) {
+                case i - 1:
+                    matrix[i][j] = a;
+                    break;
+                case i:
+                    matrix[i][j] = b;
+                    break;
+                case i + 1:
+                    matrix[i][j] = c;
+                    break;
+                default:
+                    matrix[i][j] = 0;
+                    break;
+            }
+        }
+    }
+
+    var last = length - 1;
+    matrix[last] = [];
+    matrix[last][last - 1] = a;
+    matrix[last][last] = b;
+
+    for (var i = 0; i < last - 1; i++) {
+        matrix[last][i] = 0;
+    }
+
+
+    for (var i = 0; i < length; i++) {
+        let x = getXi(i + 1, h);
+        matrix[i][length] = -F(x);
+    }
+
+    return matrix;
+}
+
 
 function arrayToTable(array) {
     var table = document.createElement("table");
