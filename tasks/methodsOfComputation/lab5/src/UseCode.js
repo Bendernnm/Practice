@@ -156,10 +156,10 @@ function MRK(y0, a, b, n, f, div) {
         x_[i] = x[i] + (h / 2);
 
         let k1 = f(x[i - 1], y[i - 1]);
-        let y_i1 = y[i - 1] + h / (2 * k1);
+        let y_i1 = y[i - 1] + (h / 2) * k1;
 
         let k2 = f(x_[i - 1], y_i1);
-        let y_i2 = y[i - 1] + h / (2 * k2);
+        let y_i2 = y[i - 1] + (h / 2) * k2;
 
         let k3 = f(x_[i - 1], y_i2);
         let y_i3 = y[i - 1] + h * k3;

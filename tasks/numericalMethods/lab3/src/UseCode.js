@@ -38,6 +38,14 @@ function calculate() {
     appendTable(div, "F_", matrixToTable(f_));
     divBr(div);
 
+    var c = [];
+    for (let i = 0, length = N1 - 2; i < length; i++) {
+        c[i] = calculateMatrixTMA(createMatrix(i));
+    }
+
+    appendTable(div, "C", matrixToTable(c));
+    divBr(div);
+
     function getX(N, h) {
         let x = [];
         let length = N - 2;
@@ -104,7 +112,7 @@ function calculate() {
             f_[k] = [];
             for (let i = 0; i < lengthColumn; i++) {
                 let sum = 0;
-                for (let j = 0; j < lengthColumn; j++) {
+                for (let j = 0; j < lengthRow; j++) {
                     sum += F(x1[i], x2[j]) * mu[k][i];
                 }
                 sum *= h2;
@@ -114,7 +122,7 @@ function calculate() {
         return f_;
     }
 
-    function createMatrix() {
+    function createMatrix(activeRow) {
         let matrix = [];
 
         let length = N2 - 2;
@@ -125,7 +133,7 @@ function calculate() {
         matrix[0][0] = -(2 + lymbda[0]) / (h1 * h1);
         matrix[0][1] = c;
         for (let k = 2; k < length; k++) {
-            matrix[0][i] = 0;
+            matrix[0][k] = 0;
         }
 
         for (let k = 1; k < length - 1; k++) {
@@ -157,8 +165,8 @@ function calculate() {
         }
 
         for (let k = 0; k < length; k++) {
-            //matrix[k][length] = -f_[k]    //TODO ???
+            matrix[k][length] = f_[activeRow][k];
         }
-
+        return matrix;
     }
 }
