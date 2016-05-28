@@ -65,7 +65,7 @@ Task8.writeToTable = function (tableId) {
         table.style.border = "1px solid black";
         table.style.fontSize = "30px";
     }
-}
+};
 
 Task8.writeResult = function (div) {
     var divResult = document.getElementById(div);

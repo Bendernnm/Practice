@@ -6,6 +6,8 @@ var btn = document.getElementById("btnCalculate");
 btn.onclick = calculate;
 
 function calculate() {
+    div.innerHTML = "";
+
     const N1 = parseInt(document.getElementById("N1").value);
     const L1 = parseInt(document.getElementById("L1").value);
     const h1 = L1 / N1;
@@ -38,12 +40,23 @@ function calculate() {
     appendTable(div, "F_", matrixToTable(f_));
     divBr(div);
 
+    //var matrix = createMatrix(2);
+    //appendTable(div, "M0", matrixToTable(matrix));
+    //divBr(div);
+
     var c = [];
     for (let i = 0, length = N1 - 2; i < length; i++) {
         c[i] = calculateMatrixTMA(createMatrix(i));
     }
-
     appendTable(div, "C", matrixToTable(c));
+    divBr(div);
+
+    var y_ = getY_();
+    appendTable(div, "Y_", matrixToTable(y_));
+    divBr(div);
+
+    var y = getY();
+    appendTable(div, "Y", matrixToTable(y));
     divBr(div);
 
     function getX(N, h) {
@@ -113,7 +126,7 @@ function calculate() {
             for (let i = 0; i < lengthColumn; i++) {
                 let sum = 0;
                 for (let j = 0; j < lengthRow; j++) {
-                    sum += F(x1[i], x2[j]) * mu[k][i];
+                    sum += F(x1[i], x2[j]) * mu[k][j];
                 }
                 sum *= h2;
                 f_[k][i] = sum;
@@ -130,7 +143,7 @@ function calculate() {
         let c = 1 / (h1 * h1);
 
         matrix[0] = [];
-        matrix[0][0] = -(2 + lymbda[0]) / (h1 * h1);
+        matrix[0][0] = -(2 / (h1 * h1) + lymbda[0]);
         matrix[0][1] = c;
         for (let k = 2; k < length; k++) {
             matrix[0][k] = 0;
@@ -144,7 +157,7 @@ function calculate() {
                         matrix[k][i] = a;
                         break;
                     case k:
-                        matrix[k][i] = -(2 + lymbda[k]) / (h1 * h1);
+                        matrix[k][i] = -(2 / (h1 * h1) + lymbda[k]);
                         break;
                     case k + 1:
                         matrix[k][i] = c;
@@ -159,14 +172,53 @@ function calculate() {
         let lastIndex = length - 1;
         matrix[lastIndex] = [];
         matrix[lastIndex][lastIndex - 1] = a;
-        matrix[lastIndex][lastIndex] = -(2 + lymbda[lastIndex]) / (h1 * h1);
+        matrix[lastIndex][lastIndex] = -(2 / (h1 * h1) + lymbda[lastIndex]);
         for (let i = 0; i < lastIndex - 1; i++) {
             matrix[lastIndex][i] = 0;
         }
 
         for (let k = 0; k < length; k++) {
-            matrix[k][length] = f_[activeRow][k];
+            matrix[k][length] = -f_[k][activeRow];
         }
         return matrix;
+    }
+
+    function getY_() {
+        let y_ = [];
+
+        let rowCount = N1 - 2;
+        let columCount = N2 - 2;
+        let length = columCount;
+
+        for (let i = 0; i < rowCount; i++) {
+            y_[i] = [];
+            for (let j = 0; j < columCount; j++) {
+
+                let sum = 0;
+                for (let k = 0; k < length; k++) {
+                    sum += c[i][k] * mu[k][j];
+                }
+                y_[i][j] = sum;
+
+            }
+        }
+
+        return y_;
+    }
+
+    function getY() {
+        let y = [];
+
+        let rowCount = N1 - 2;
+        let columCount = N2 - 2;
+
+        for (let i = 0; i < rowCount; i++) {
+            y[i] = [];
+            for (let j = 0; j < columCount; j++) {
+                y[i][j] = F(x1[i], x2[j]);
+            }
+        }
+
+        return y;
     }
 }
